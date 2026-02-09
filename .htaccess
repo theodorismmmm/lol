@@ -1,0 +1,14 @@
+# Protect messages.json from direct access
+<Files "messages.json">
+    Order Deny,Allow
+    Deny from all
+    # Allow only from localhost and the PHP script
+    Allow from 127.0.0.1
+    Allow from ::1
+</Files>
+
+# Alternative: Use this if the above doesn't work
+# Uncomment the following lines:
+# <FilesMatch "messages\.json$">
+#     Require all denied
+# </FilesMatch>

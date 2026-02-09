@@ -1,3 +1,81 @@
+<?php
+// Simple password protection
+// IMPORTANT: Change this password before deploying!
+$admin_password = 'valentinstag2026';
+
+session_start();
+
+if (!isset($_SESSION['admin_authenticated'])) {
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['password'])) {
+        if ($_POST['password'] === $admin_password) {
+            $_SESSION['admin_authenticated'] = true;
+        } else {
+            $error = 'Falsches Passwort!';
+        }
+    }
+    
+    if (!isset($_SESSION['admin_authenticated'])) {
+        ?>
+        <!DOCTYPE html>
+        <html lang="de">
+        <head>
+            <meta charset="UTF-8">
+            <title>Admin Login</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    min-height: 100vh;
+                    margin: 0;
+                }
+                .login-box {
+                    background: white;
+                    padding: 40px;
+                    border-radius: 10px;
+                    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+                    text-align: center;
+                }
+                h2 { color: #667eea; margin-bottom: 20px; }
+                input[type="password"] {
+                    width: 250px;
+                    padding: 10px;
+                    margin: 10px 0;
+                    border: 2px solid #667eea;
+                    border-radius: 5px;
+                }
+                button {
+                    padding: 10px 30px;
+                    background: #667eea;
+                    color: white;
+                    border: none;
+                    border-radius: 5px;
+                    cursor: pointer;
+                }
+                .error { color: red; margin: 10px 0; }
+            </style>
+        </head>
+        <body>
+            <div class="login-box">
+                <h2>🔒 Admin Login</h2>
+                <?php if (isset($error)): ?>
+                    <div class="error"><?php echo $error; ?></div>
+                <?php endif; ?>
+                <form method="post">
+                    <input type="password" name="password" placeholder="Passwort" required>
+                    <br>
+                    <button type="submit">Anmelden</button>
+                </form>
+            </div>
+        </body>
+        </html>
+        <?php
+        exit;
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="de">
 <head>

@@ -1,1 +1,26 @@
-[]
+[
+    {
+        "to": "test@example.com",
+        "message": "Dies ist eine Test Valentinstag Nachricht!",
+        "timestamp": "2026-02-09 17:39:29",
+        "ip": "::1"
+    },
+    {
+        "to": "love@example.de",
+        "message": "Du bist wunderbar! Alles Gute zum Valentinstag! ❤️",
+        "timestamp": "2026-02-09 17:39:40",
+        "ip": "::1"
+    },
+    {
+        "to": "valentinstag@example.com",
+        "message": "Du bist etwas ganz Besonderes! Ich hoffe, du hast einen wunderschönen Valentinstag! ❤️",
+        "timestamp": "2026-02-09 17:40:31",
+        "ip": "::1"
+    },
+    {
+        "to": "final-test@example.com",
+        "message": "Dieser Test überprüft die Korrekturen!",
+        "timestamp": "2026-02-09 17:42:36",
+        "ip": "::1"
+    }
+]

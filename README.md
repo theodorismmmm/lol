@@ -71,10 +71,20 @@ composer require phpmailer/phpmailer
 - Zeigt alle Nachrichten mit Zeitstempel
 - Statistiken über Gesamtnachrichten und heutige Nachrichten
 - Auto-Refresh alle 30 Sekunden
+- **Passwortgeschützt** - Standard-Passwort: `valentinstag2026`
 
-**Wichtig:** In einer Produktionsumgebung solltest du `admin.php` mit einem Passwort schützen!
+**Wichtig:** Ändere das Admin-Passwort in `admin.php` (Zeile 4) vor dem Deployment!
 
-### Admin-Panel schützen (empfohlen)
+### Admin-Panel Passwort ändern
+
+Bearbeite `admin.php` und ändere diese Zeile:
+```php
+$admin_password = 'valentinstag2026'; // Ändere dies zu einem sicheren Passwort!
+```
+
+### Zusätzlicher Schutz (optional)
+
+Für zusätzliche Sicherheit kannst du auch HTTP Basic Authentication verwenden.
 
 Erstelle eine `.htaccess` Datei:
 ```apache

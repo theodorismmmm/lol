@@ -60,7 +60,7 @@ if (file_put_contents($storageFile, json_encode($messages, JSON_PRETTY_PRINT | J
     Jemand hat dir eine anonyme Nachricht zum Valentinstag geschickt!
     
     Nachricht:
-    " . nl2br(htmlspecialchars($message)) . "
+    " . nl2br($message) . "
     
     ───────────────────────────────────────
     
@@ -70,14 +70,18 @@ if (file_put_contents($storageFile, json_encode($messages, JSON_PRETTY_PRINT | J
     ❤️ Frohen Valentinstag! ❤️
     ";
     
-    $headers = "From: Valentinstag <noreply@valentinstag.com>\r\n";
-    $headers .= "Reply-To: noreply@valentinstag.com\r\n";
+    $serverDomain = $_SERVER['SERVER_NAME'] ?? 'valentinstag.com';
+    $headers = "From: Valentinstag <noreply@{$serverDomain}>\r\n";
+    $headers .= "Reply-To: noreply@{$serverDomain}\r\n";
     $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
     $headers .= "X-Mailer: PHP/" . phpversion();
     
     // Note: mail() function might not work on all servers without proper configuration
     // For production, consider using PHPMailer or a service like SendGrid
-    $emailSent = @mail($toEmail, $subject, $emailBody, $headers);
+    $emailSent = mail($toEmail, $subject, $emailBody, $headers);
+    if (!$emailSent) {
+        error_log("Failed to send email to: " . $toEmail);
+    }
     
     if ($emailSent) {
         echo json_encode([
