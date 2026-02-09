@@ -1,0 +1,19 @@
+# Backup files
+*.bak
+*.backup
+messages.json.backup
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Temporary files
+*.tmp
+*.temp
